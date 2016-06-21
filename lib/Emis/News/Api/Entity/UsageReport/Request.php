@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Client\Entity\UsageReport;
+namespace Emis\News\Api\Entity\UsageReport;
 
 use Emis\Application;
 
@@ -12,7 +12,7 @@ class Request
     private $applicationContext;
 
     /**
-     * @var \Emis\News\Client\Entity\UsageReport\Document[]
+     * @var \Emis\News\Api\Entity\UsageReport\Document[]
      */
     private $documents;
 

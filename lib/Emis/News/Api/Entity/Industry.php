@@ -1,17 +1,12 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
-class Publication
+class Industry
 {
     /**
      * @var int
      */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $code;
 
     /**
      * @var string
@@ -28,29 +23,11 @@ class Publication
 
     /**
      * @param int $id
-     * @return Publication
+     * @return Industry
      */
     public function setId($id)
     {
         $this->id = (int)$id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * @param string $code
-     * @return Publication
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
         return $this;
     }
 
@@ -64,11 +41,18 @@ class Publication
 
     /**
      * @param string $name
-     * @return Publication
+     * @return Industry
      */
     public function setName($name)
     {
         $this->name = $name;
         return $this;
+    }
+
+    protected function unserializeRaw()
+    {
+        $translate = \Zend_Registry::get('translate');
+        $this->setId($this->getRawData());
+        $this->setName($translate->_('INDU' . $this->getId()));
     }
 }

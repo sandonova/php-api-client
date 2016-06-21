@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Client\Entity\UsageReport;
+namespace Emis\News\Api\Entity\UsageReport;
 
 use Emis\Application;
 

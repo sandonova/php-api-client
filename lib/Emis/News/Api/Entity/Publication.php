@@ -1,7 +1,7 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
-class PublicationType
+class Publication
 {
     /**
      * @var int
@@ -28,7 +28,7 @@ class PublicationType
 
     /**
      * @param int $id
-     * @return PublicationType
+     * @return Publication
      */
     public function setId($id)
     {
@@ -46,7 +46,7 @@ class PublicationType
 
     /**
      * @param string $code
-     * @return PublicationType
+     * @return Publication
      */
     public function setCode($code)
     {
@@ -64,7 +64,7 @@ class PublicationType
 
     /**
      * @param string $name
-     * @return PublicationType
+     * @return Publication
      */
     public function setName($name)
     {

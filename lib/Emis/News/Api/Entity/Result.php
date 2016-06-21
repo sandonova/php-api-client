@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
 class Result
 {
@@ -19,12 +19,12 @@ class Result
     private $results = 0;
 
     /**
-     * @var \Emis\News\Client\Entity\Search
+     * @var \Emis\News\Api\Entity\Search
      */
     private $search;
 
     /**
-     * @var \Emis\News\Client\Entity\Document[]
+     * @var \Emis\News\Api\Entity\Document[]
      */
     private $documents;
 

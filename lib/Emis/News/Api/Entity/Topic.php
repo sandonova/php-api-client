@@ -1,17 +1,12 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
-class SourceType
+class Topic
 {
     /**
      * @var int
      */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $code;
 
     /**
      * @var string
@@ -28,29 +23,11 @@ class SourceType
 
     /**
      * @param int $id
-     * @return SourceType
+     * @return Topic
      */
     public function setId($id)
     {
         $this->id = (int)$id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * @param string $code
-     * @return SourceType
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
         return $this;
     }
 
@@ -64,7 +41,7 @@ class SourceType
 
     /**
      * @param string $name
-     * @return SourceType
+     * @return Topic
      */
     public function setName($name)
     {

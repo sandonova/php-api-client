@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
 class Company
 {

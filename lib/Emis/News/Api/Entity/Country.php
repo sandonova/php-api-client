@@ -1,8 +1,13 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
-class Language
+class Country
 {
+    /**
+     * @var int
+     */
+    private $id;
+
     /**
      * @var string
      */
@@ -14,6 +19,24 @@ class Language
     private $name;
 
     /**
+     * @return int
+     */
+    public function getId()
+    {
+        return (int)$this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Country
+     */
+    public function setId($id)
+    {
+        $this->id = (int)$id;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getCode()
@@ -23,7 +46,7 @@ class Language
 
     /**
      * @param string $code
-     * @return Language
+     * @return Country
      */
     public function setCode($code)
     {
@@ -41,7 +64,7 @@ class Language
 
     /**
      * @param string $name
-     * @return Language
+     * @return Country
      */
     public function setName($name)
     {

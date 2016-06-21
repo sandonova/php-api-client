@@ -1,12 +1,12 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
-class Topic
+class Language
 {
     /**
-     * @var int
+     * @var string
      */
-    private $id;
+    private $code;
 
     /**
      * @var string
@@ -14,20 +14,20 @@ class Topic
     private $name;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId()
+    public function getCode()
     {
-        return (int)$this->id;
+        return $this->code;
     }
 
     /**
-     * @param int $id
-     * @return Topic
+     * @param string $code
+     * @return Language
      */
-    public function setId($id)
+    public function setCode($code)
     {
-        $this->id = (int)$id;
+        $this->code = $code;
         return $this;
     }
 
@@ -41,7 +41,7 @@ class Topic
 
     /**
      * @param string $name
-     * @return Topic
+     * @return Language
      */
     public function setName($name)
     {

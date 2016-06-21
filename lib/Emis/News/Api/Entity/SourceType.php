@@ -1,7 +1,7 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
-class Country
+class SourceType
 {
     /**
      * @var int
@@ -28,7 +28,7 @@ class Country
 
     /**
      * @param int $id
-     * @return Country
+     * @return SourceType
      */
     public function setId($id)
     {
@@ -46,7 +46,7 @@ class Country
 
     /**
      * @param string $code
-     * @return Country
+     * @return SourceType
      */
     public function setCode($code)
     {
@@ -64,7 +64,7 @@ class Country
 
     /**
      * @param string $name
-     * @return Country
+     * @return SourceType
      */
     public function setName($name)
     {

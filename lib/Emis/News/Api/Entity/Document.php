@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Client\Entity;
+namespace Emis\News\Api\Entity;
 
 class Document
 {
@@ -43,7 +43,7 @@ class Document
     private $body;
 
     /**
-     * @var \Emis\News\Client\Entity\Language
+     * @var \Emis\News\Api\Entity\Language
      */
     private $language;
 
@@ -58,42 +58,42 @@ class Document
     private $updateDate;
 
     /**
-     * @var \Emis\News\Client\Entity\Company[]
+     * @var \Emis\News\Api\Entity\Company[]
      */
     private $companies = array();
 
     /**
-     * @var \Emis\News\Client\Entity\Country[]
+     * @var \Emis\News\Api\Entity\Country[]
      */
     private $countries = array();
 
     /**
-     * @var \Emis\News\Client\Entity\Topic[]
+     * @var \Emis\News\Api\Entity\Topic[]
      */
     private $topics = array();
 
     /**
-     * @var \Emis\News\Client\Entity\Industry[]
+     * @var \Emis\News\Api\Entity\Industry[]
      */
     private $industries = array();
 
     /**
-     * @var \Emis\News\Client\Entity\File[]
+     * @var \Emis\News\Api\Entity\File[]
      */
     private $files = array();
 
     /**
-     * @var \Emis\News\Client\Entity\SourceType
+     * @var \Emis\News\Api\Entity\SourceType
      */
     private $sourceType;
 
     /**
-     * @var \Emis\News\Client\Entity\Publication
+     * @var \Emis\News\Api\Entity\Publication
      */
     private $publication;
 
     /**
-     * @var \Emis\News\Client\Entity\PublicationType[]
+     * @var \Emis\News\Api\Entity\PublicationType[]
      */
     private $publicationTypes = array();
 
