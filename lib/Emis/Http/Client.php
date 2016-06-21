@@ -70,7 +70,7 @@ class Client
 
         if (isset($result->data->_type)) {
             $serializer = new Serializer();
-            $object = $serializer->unserialize($result->data);
+            $object = $serializer->unserialize($response);
             return $object;
         }
 
