@@ -1,0 +1,21 @@
+{
+  "name": "Emis/ApiClient",
+  "description": "EMIS PHP API Client Library",
+  "type": "library",
+  "license": "proprietary",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Ivan Zhekov",
+      "email": "izhekov@emis.com"
+    }
+  ],
+  "require": {
+    "pear/pear": "dev-master#d346efa9809bdf0e53d711fbffd385d070207f96",
+    "pear/console_getopt": "1.4.*",
+    "pear/xml_serializer": "dev-trunk#44430d18a0960fb5a84a450473df45e30d457e06"
+  },
+  "autoload": {
+    "psr-0": { "Emis\\": "lib/" }
+  }
+}
