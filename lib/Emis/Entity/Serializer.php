@@ -103,7 +103,7 @@ class Serializer
                 $data = $this->asXml($object);
                 break;
             default:
-                throw new InternalException('Unknown output format.', InternalException::OUTPUT_FORMAT_UNKNOWN);
+                throw new \Exception('Unknown output format.');
         }
 
         return $data;
@@ -118,7 +118,7 @@ class Serializer
      * @param $data
      * @param null $constructorParameter
      * @return array|\DateTime
-     * @throws InternalException
+     * @throws \Exception
      */
     public function unserialize($data, $constructorParameter = null)
     {
@@ -140,7 +140,7 @@ class Serializer
                 $stdClass = $xmlSerializer->getUnserializedData();
                 break;
             default:
-                throw new InternalException('Unknown output format.', InternalException::OUTPUT_FORMAT_UNKNOWN);
+                throw new \Exception('Unknown output format.');
         }
 
         $stdClass = $this->fixUnserializedArrays($stdClass);
@@ -370,7 +370,7 @@ class Serializer
                 header('Content-Type: application/xml');
                 break;
             default:
-                throw new InternalException('Unknown output format.', InternalException::OUTPUT_FORMAT_UNKNOWN);
+                throw new \Exception('Unknown output format.');
         }
 
         echo $data;

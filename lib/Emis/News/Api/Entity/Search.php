@@ -15,6 +15,9 @@ class Search
     const ORDER_DOCUMENT_ID_ASC = 'id_asc';
     const ORDER_DOCUMENT_ID_DESC = 'id_desc';
 
+    const SCOPE_EVERYWHERE = 'everywhere';
+    const SCOPE_TITLE = 'title';
+
     /**
      * @var string[]
      */

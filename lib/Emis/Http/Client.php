@@ -48,6 +48,14 @@ class Client
         curl_setopt($this->handler, CURLOPT_SSL_VERIFYPEER, false);
     }
 
+    /**
+     * @param string $class
+     * @param string $method
+     * @param array $params
+     * @param string $api
+     * @return array
+     * @throws \Exception
+     */
     public function request($class, $method, $params = array(), $api = self::DEFAULT_API)
     {
         if ($this->getToken()) {
@@ -77,6 +85,11 @@ class Client
         return $result->data;
     }
 
+    /**
+     * @param string $username
+     * @param string $password
+     * @throws \Exception
+     */
     public function login($username, $password)
     {
         $result = $this->request(
@@ -91,8 +104,31 @@ class Client
         $this->setToken($result->sessionId);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function logout()
     {
         $this->request('Auth', 'logout');
+    }
+
+    /**
+     * @param object|string $class
+     * @param string $method
+     * @param array $values
+     * @return array
+     */
+    public function paramsAsArray($class, $method, $values)
+    {
+        $ref = new \ReflectionMethod($class, $method);
+        $index = 0;
+        $params = array();
+
+        foreach ($ref->getParameters() as $param) {
+            $params[$param->getName()] = $values[$index];
+            $index++;
+        }
+
+        return $params;
     }
 }
