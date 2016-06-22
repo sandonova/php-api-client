@@ -81,7 +81,7 @@ class Client
             throw new \Exception($result->errors[0]->detail, $result->errors[0]->code);
         }
 
-        if (isset($result->data->_type)) {
+        if (isset($result->data->_type) || (is_array($result->data) && count($result->data) && $result->data[0]->_type)) {
             $serializer = new Serializer();
             $object = $serializer->unserialize($response);
             return $object;
