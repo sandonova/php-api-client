@@ -116,3 +116,21 @@ foreach ($dictionary->getCountries() as $country) {
 
 ## Usage tracking for single document
 
+```
+use Emis\News\Api\Proxy\Search;
+use Emis\News\Api\Proxy\Usage;
+
+...
+
+$search = new Search($client);
+$result = $search->query('HU');
+$documents = $result->getDocuments();
+
+$usage = new Usage($client);
+$usage->report($documents[0]->getId(), new \DateTime());
+```
+
+## Usage tracking for multiple documents
+
+```
+```

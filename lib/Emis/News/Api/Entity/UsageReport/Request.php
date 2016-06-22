@@ -1,38 +1,12 @@
 <?php
 namespace Emis\News\Api\Entity\UsageReport;
 
-use Emis\Application;
-
 class Request
 {
-    /**
-     * @serializable false
-     * @var Application
-     */
-    private $applicationContext;
-
     /**
      * @var \Emis\News\Api\Entity\UsageReport\Document[]
      */
     private $documents;
-
-    /**
-     * @return Application
-     */
-    public function getApplicationContext()
-    {
-        return $this->applicationContext;
-    }
-
-    /**
-     * @param Application $applicationContext
-     * @return Request
-     */
-    public function setApplicationContext($applicationContext)
-    {
-        $this->applicationContext = $applicationContext;
-        return $this;
-    }
 
     /**
      * @return Document[]
@@ -60,14 +34,5 @@ class Request
     {
         $this->documents[] = $document;
         return $this;
-    }
-
-    /**
-     * UsageReportRequest constructor.
-     * @param Application $applicationContext
-     */
-    public function __construct(Application $applicationContext)
-    {
-        $this->setApplicationContext($applicationContext);
     }
 }
