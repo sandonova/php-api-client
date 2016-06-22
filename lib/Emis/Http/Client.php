@@ -37,6 +37,11 @@ class Client
         return $this;
     }
 
+    public function __construct()
+    {
+        $this->init();
+    }
+
     public function init()
     {
         $this->handler = curl_init();

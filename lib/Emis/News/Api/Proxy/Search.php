@@ -31,6 +31,15 @@ class Search
     }
 
     /**
+     * Search constructor.
+     * @param Client $client
+     */
+    public function __construct($client)
+    {
+        $this->setClient($client);
+    }
+
+    /**
      * @Authorization(type=AuthorizationType::AUTHENTICATED)
      * @param array $countries
      * @param array $languages
