@@ -133,4 +133,25 @@ $usage->report($documents[0]->getId(), new \DateTime());
 ## Usage tracking for multiple documents
 
 ```
+use Emis\News\Api\Proxy\Search;
+use Emis\News\Api\Proxy\Usage;
+use Emis\News\Api\Entity\UsageReport\Document as ReportDocument;
+use Emis\News\Api\Entity\UsageReport\Request as UsageRequest;
+
+... 
+
+$search = new Search($client);
+$result = $search->query('HU');
+
+$usage = new Usage($client);
+$request = new UsageRequest();
+
+foreach ($result->getDocuments() as $document) {
+    $reportDocument = new ReportDocument();
+    $reportDocument->setDocumentId($document->getId());
+    $reportDocument->setAccessTime(new \DateTime());
+    $request->addDocument($reportDocument);
+}
+
+$usage->reportMultiple($request);
 ```
