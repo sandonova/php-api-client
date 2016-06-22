@@ -17,8 +17,9 @@ class Usage extends Base
         if (!$serializer) {
             $serializer = new Serializer();
         }
-        
-        $data = $serializer->serialize($request);
+
+        $stdClass = $serializer->asStdClass($request);
+        $data = $serializer->serialize($stdClass);
 
         $params = array('data' => $data);
         $this->getClient()->request('Usage', 'reportMultiple', $params);
