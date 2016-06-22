@@ -132,6 +132,10 @@ class Client
         foreach ($ref->getParameters() as $param) {
             $params[$param->getName()] = $values[$index];
             $index++;
+
+            if ($index >= count($values)) {
+                break;
+            }
         }
 
         return $params;
