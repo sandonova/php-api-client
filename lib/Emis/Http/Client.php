@@ -67,6 +67,12 @@ class Client
             $params['sessionId'] = $this->getToken();
         }
 
+        foreach ($params as $key => $value) {
+            if ($value instanceof \DateTime) {
+                $params[$key] = $value->format(\DateTime::ISO8601);
+            }
+        }
+
         $url = sprintf(self::API_URL, $api, $class, $method, http_build_query($params));
         curl_setopt($this->handler, CURLOPT_URL, $url);
 

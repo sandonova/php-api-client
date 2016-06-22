@@ -97,4 +97,22 @@ foreach ($result->getDocuments() as $document) {
 }
 ```
 
-## 
+## Get list of dictionary entities (countries) 
+
+The example code prints the country code and country name, and can be easily modify to return results for
+any other Dictionary method.
+
+```
+use Emis\News\Api\Proxy\Dictionary;
+
+...
+
+$dictionary = new Dictionary($client);
+
+foreach ($dictionary->getCountries() as $country) {
+    echo $country->getCode() . " : " . $country->getName() . "\n";
+}
+```
+
+## Usage tracking for single document
+
