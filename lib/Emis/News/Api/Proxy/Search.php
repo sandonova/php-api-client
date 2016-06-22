@@ -1,44 +1,11 @@
 <?php
 namespace Emis\News\Api\Proxy;
 
-use Emis\Http\Client;
 use Emis\News\Api\Entity\Result;
 use Emis\News\Api\Entity\Search as SearchEntity;
 
-class Search
+class Search extends Base
 {
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @return Client
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
-     * @param Client $client
-     * @return Search
-     */
-    public function setClient($client)
-    {
-        $this->client = $client;
-        return $this;
-    }
-
-    /**
-     * Search constructor.
-     * @param Client $client
-     */
-    public function __construct($client)
-    {
-        $this->setClient($client);
-    }
-
     /**
      * @Authorization(type=AuthorizationType::AUTHENTICATED)
      * @param array $countries
