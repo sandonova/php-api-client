@@ -74,6 +74,7 @@ use Emis\News\Api\Proxy\Search;
 
 $search = new Search($client);
 $result = $search->query('HU');
+
 foreach ($result->getDocuments() as $document) {
     echo $document->getTitle() . "\n";
 }
