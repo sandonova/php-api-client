@@ -7,19 +7,12 @@ class Document
     const FORMAT_PDF = 2;
     const FORMAT_DOC = 3;
     const FORMAT_XLS = 4;
-    const FORMAT_MULTI = 999;
-
-    const MULTI_DOCUMENT_SOURCE_S3 = 1;
-    const MULTI_DOCUMENT_SOURCE_MDW =  2;
-
-    const MULTIPLE_COUNTRIES_CODE = 'YY';
 
     public static $FORMAT_ENUM = array(
         self::FORMAT_HTML => 'HTML',
         self::FORMAT_PDF => 'PDF',
         self::FORMAT_DOC => 'DOC',
-        self::FORMAT_XLS => 'XLS',
-        self::FORMAT_MULTI => 'MULTI'
+        self::FORMAT_XLS => 'XLS'
     );
 
     /**

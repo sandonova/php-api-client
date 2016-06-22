@@ -79,3 +79,22 @@ foreach ($result->getDocuments() as $document) {
     echo $document->getTitle() . "\n";
 }
 ```
+
+# Additional Examples
+
+## Using Search::getDocuments as a sub-request to get the documents one by one
+
+```
+$search = new Search($client);
+$result = $search->query('HU');
+
+foreach ($result->getDocuments() as $document) {
+    $subResult = $search->getDocuments($document->getId());
+
+    foreach ($subResult->getDocuments() as $subDocument) {
+        echo $subDocument->getTitle() . "\n";
+    }
+}
+```
+
+## 
