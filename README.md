@@ -73,20 +73,20 @@ use Emis\News\Api\Entity as SearchRequest;
 
 ...
 
-$search new Search($client);
+$search = new Search($client);
 $searchRequest = new SearchRequest();
-$searchRequest->setCountries('RU');
-$searchRequest->setLanguages('en', 'ru');
+$searchRequest->setCountries(array('RU'));
+$searchRequest->setLanguages(array('en', 'ru'));
 $result = $search->searchQuery($searchRequest);
 
 $counter = array('en' => 0, 'ru' => 0);
 
 foreach ($result->getDocuments() as $document) {
-    $counter[$document->getLanguage()]++;
+    $counter[$document->getLanguage()->getCode()]++;
 }
 
-sprintf("Total of %s en documents found.\n", $counter['en']);
-sprintf("Total of %s ru documents found.\n", $counter['ru']);
+printf("Total of %s en documents found.\n", $counter['en']);
+printf("Total of %s ru documents found.\n", $counter['ru']);
 ```
 
 ## Using Search::getDocuments as a sub-request to get the documents one by one
