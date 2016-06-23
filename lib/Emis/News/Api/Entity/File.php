@@ -3,8 +3,6 @@ namespace Emis\News\Api\Entity;
 
 class File
 {
-    const LINK_URL_PARAMS = '?class=Search&method=getFile&key=';
-
     /**
      * @var string
      */
@@ -52,7 +50,7 @@ class File
      */
     public function setLink($link)
     {
-        $this->link = $this->getApiUrl() . self::LINK_URL_PARAMS . $link;
+        $this->link = $link;
 
         return $this;
     }
@@ -73,13 +71,5 @@ class File
     {
         $this->format = $format;
         return $this;
-    }
-
-    protected function unserializeRaw()
-    {
-        $data = $this->getRawData();
-        $this->setLink($data->LINK)
-            ->setTitle($data->TITL)
-            ->setFormat($data->DTYP);
     }
 }

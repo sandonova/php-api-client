@@ -48,11 +48,4 @@ class Industry
         $this->name = $name;
         return $this;
     }
-
-    protected function unserializeRaw()
-    {
-        $translate = \Zend_Registry::get('translate');
-        $this->setId($this->getRawData());
-        $this->setName($translate->_('INDU' . $this->getId()));
-    }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Emis\News\Api\Proxy;
 
+use Emis\Entity\Serializer;
 use Emis\News\Api\Entity\Result;
 use Emis\News\Api\Entity\Search as SearchEntity;
 
@@ -56,6 +57,33 @@ class Search extends Base
 
         /* @var Result $result */
         $result = $this->getClient()->request('Search', 'query', $params);
+
+        return $result;
+    }
+
+    public function searchQuery(SearchEntity $searchRequest)
+    {
+        $result = $this->query(
+            $searchRequest->getCountries(),
+            $searchRequest->getLanguages(),
+            $searchRequest->getFormats(),
+            $searchRequest->getCompanies(),
+            $searchRequest->getIndustries(),
+            $searchRequest->getTopics(),
+            $searchRequest->getSourceTypes(),
+            $searchRequest->getPublications(),
+            $searchRequest->getPublicationTypes(),
+            $searchRequest->getStartDate(),
+            $searchRequest->getEndDate(),
+            $searchRequest->getTerm(),
+            $searchRequest->getScope(),
+            $searchRequest->getStartDocumentId(),
+            $searchRequest->getOffset(),
+            $searchRequest->getLimit(),
+            $searchRequest->getOrder(),
+            $searchRequest->isSkipDuplicates(),
+            $searchRequest->isIncludeBody()
+        );
 
         return $result;
     }

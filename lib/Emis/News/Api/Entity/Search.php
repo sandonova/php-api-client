@@ -3,12 +3,6 @@ namespace Emis\News\Api\Entity;
 
 class Search
 {
-    const ORDER_ELASTIC_RELEVANCE = 'relevance';
-    const ORDER_ELASTIC_NEWEST = 'date';
-    const ORDER_ELASTIC_OLDEST = 'dateasc';
-    const ORDER_ELASTIC_DOCUMENT_ID_ASC = 'dcid_asc';
-    const ORDER_ELASTIC_DOCUMENT_ID_DESC = 'dcid_desc';
-
     const ORDER_RELEVANCE = 'relevance';
     const ORDER_NEWEST = 'newest';
     const ORDER_OLDEST = 'oldest';
@@ -92,6 +86,26 @@ class Search
      * @var string
      */
     private $order = null;
+
+    /**
+     * @var string
+     */
+    private $scope = Search::SCOPE_EVERYWHERE;
+
+    /**
+     * @var int
+     */
+    private $startDocumentId = null;
+
+    /**
+     * @var bool
+     */
+    private $skipDuplicates = true;
+
+    /**
+     * @var bool
+     */
+    private $includeBody = false;
 
     /**
      * @return string[]
@@ -247,10 +261,9 @@ class Search
 
     /**
      * @param string[] $publicationTypes
-     * @param null $allowedPublicationTypes
      * @return Search
      */
-    public function setPublicationTypes($publicationTypes, $allowedPublicationTypes = null)
+    public function setPublicationTypes($publicationTypes)
     {
         $this->publicationTypes = $publicationTypes;
         return $this;
@@ -351,15 +364,7 @@ class Search
      */
     public function getOrder()
     {
-        $map = array(
-            Search::ORDER_ELASTIC_RELEVANCE => Search::ORDER_RELEVANCE,
-            Search::ORDER_ELASTIC_NEWEST => Search::ORDER_NEWEST,
-            Search::ORDER_ELASTIC_OLDEST => Search::ORDER_OLDEST,
-            Search::ORDER_ELASTIC_DOCUMENT_ID_ASC => Search::ORDER_DOCUMENT_ID_ASC,
-            Search::ORDER_ELASTIC_DOCUMENT_ID_DESC => Search::ORDER_DOCUMENT_ID_DESC,
-        );
-
-        return $map[$this->order];
+        return $this->order;
     }
 
     /**
@@ -369,6 +374,78 @@ class Search
     public function setOrder($order)
     {
         $this->order = $order;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getScope()
+    {
+        return $this->scope;
+    }
+
+    /**
+     * @param string $scope
+     * @return Search
+     */
+    public function setScope($scope)
+    {
+        $this->scope = $scope;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStartDocumentId()
+    {
+        return $this->startDocumentId;
+    }
+
+    /**
+     * @param int $startDocumentId
+     * @return Search
+     */
+    public function setStartDocumentId($startDocumentId)
+    {
+        $this->startDocumentId = $startDocumentId;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSkipDuplicates()
+    {
+        return $this->skipDuplicates;
+    }
+
+    /**
+     * @param boolean $skipDuplicates
+     * @return Search
+     */
+    public function setSkipDuplicates($skipDuplicates)
+    {
+        $this->skipDuplicates = $skipDuplicates;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIncludeBody()
+    {
+        return $this->includeBody;
+    }
+
+    /**
+     * @param boolean $includeBody
+     * @return Search
+     */
+    public function setIncludeBody($includeBody)
+    {
+        $this->includeBody = $includeBody;
         return $this;
     }
 }
