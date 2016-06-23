@@ -1,5 +1,5 @@
 {
-  "name": "Emis/PhpApiClient",
+  "name": "emis/php-api-client",
   "description": "EMIS PHP API Client Library",
   "type": "library",
   "license": "proprietary",

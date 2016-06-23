@@ -4,14 +4,8 @@ Create a new project with composer.json inside loading EMIS API Client library.
 
 ```
 {
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/ISIEmergingMarkets/php-api-client.git"
-    }
-  ],
   "require": {
-    "Emis/PhpApiClient": "dev-dev"
+    "emis/php-api-client": "1.*"
   }
 }
 ```
