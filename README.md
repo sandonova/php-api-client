@@ -69,7 +69,7 @@ foreach ($result->getDocuments() as $document) {
 ## Using searchQuery method to easily pass the needed query parameters
  
 ```
-use Emis\News\Api\Entity as SearchRequest;
+use Emis\News\Api\Entity\Search as SearchRequest;
 
 ...
 
