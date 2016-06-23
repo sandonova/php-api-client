@@ -3,7 +3,7 @@
   "description": "EMIS PHP API Client Library",
   "type": "library",
   "license": "proprietary",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "authors": [
     {
       "name": "Ivan Zhekov",
