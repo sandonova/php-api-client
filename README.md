@@ -1,19 +1,9 @@
 # composer.json
 
-Create a new project with composer.json inside loading EMIS API Client library.
-
+Create a new project and add the EMIS API composer dependency:
+ 
 ```
-{
-  "require": {
-    "emis/php-api-client": "1.*"
-  }
-}
-```
-
-Then update your dependencies:
-
-```
-composer update
+composer require emis/php-api-client
 ```
 
 # Autoload 
