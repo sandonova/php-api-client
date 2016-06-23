@@ -66,6 +66,29 @@ foreach ($result->getDocuments() as $document) {
 
 # Additional Examples
 
+## Using searchQuery method to easily pass the needed query parameters
+ 
+```
+use Emis\News\Api\Entity as SearchRequest;
+
+...
+
+$search new Search($client);
+$searchRequest = new SearchRequest();
+$searchRequest->setCountries('RU');
+$searchRequest->setLanguages('en', 'ru');
+$result = $search->searchQuery($searchRequest);
+
+$counter = array('en' => 0, 'ru' => 0);
+
+foreach ($result->getDocuments() as $document) {
+    $counter[$document->getLanguage()]++;
+}
+
+sprintf("Total of %s en documents found.\n", $counter['en']);
+sprintf("Total of %s ru documents found.\n", $counter['ru']);
+```
+
 ## Using Search::getDocuments as a sub-request to get the documents one by one
 
 ```
