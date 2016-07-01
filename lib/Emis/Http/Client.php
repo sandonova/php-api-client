@@ -115,6 +115,16 @@ class Client
         $this->setToken($result->sessionId);
     }
 
+    public function getUserData()
+    {
+        $result = $this->request(
+            'Auth',
+            'getUserData'
+        );
+
+        return $result;
+    }
+
     /**
      * @throws \Exception
      */
