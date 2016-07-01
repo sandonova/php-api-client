@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Api\Entity;
+namespace Emis\Entity\Api\Document;
 
 class Document
 {
@@ -51,42 +51,42 @@ class Document
     private $updateDate;
 
     /**
-     * @var \Emis\News\Api\Entity\Company[]
+     * @var \Emis\Entity\Api\Dictionary\Company[]
      */
     private $companies = array();
 
     /**
-     * @var \Emis\News\Api\Entity\Country[]
+     * @var \Emis\Entity\Api\Dictionary\Country[]
      */
     private $countries = array();
 
     /**
-     * @var \Emis\News\Api\Entity\Topic[]
+     * @var \Emis\Entity\Api\Dictionary\Topic[]
      */
     private $topics = array();
 
     /**
-     * @var \Emis\News\Api\Entity\Industry[]
+     * @var \Emis\Entity\Api\Dictionary\Industry[]
      */
     private $industries = array();
 
     /**
-     * @var \Emis\News\Api\Entity\File[]
+     * @var \Emis\Entity\Api\Dictionary\File[]
      */
     private $files = array();
 
     /**
-     * @var \Emis\News\Api\Entity\SourceType
+     * @var \Emis\Entity\Api\Dictionary\SourceType
      */
     private $sourceType;
 
     /**
-     * @var \Emis\News\Api\Entity\Publication
+     * @var \Emis\Entity\Api\Dictionary\Publication
      */
     private $publication;
 
     /**
-     * @var \Emis\News\Api\Entity\PublicationType[]
+     * @var \Emis\Entity\Api\Dictionary\PublicationType[]
      */
     private $publicationTypes = array();
 

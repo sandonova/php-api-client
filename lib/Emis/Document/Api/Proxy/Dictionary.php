@@ -1,17 +1,17 @@
 <?php
-namespace Emis\News\Api\Proxy;
+namespace Emis\Document\Api\Proxy;
 
-use Emis\News\Api\Entity\Country;
-use Emis\News\Api\Entity\Industry;
-use Emis\News\Api\Entity\Language;
-use Emis\News\Api\Entity\PublicationType;
-use Emis\News\Api\Entity\SourceType;
-use Emis\News\Api\Entity\Topic;
+use Emis\Entity\Api\Dictionary\Country;
+use Emis\Entity\Api\Dictionary\Industry;
+use Emis\Entity\Api\Dictionary\Language;
+use Emis\Entity\Api\Dictionary\PublicationType;
+use Emis\Entity\Api\Dictionary\SourceType;
+use Emis\Entity\Api\Dictionary\Topic;
 
 class Dictionary extends Base
 {
     /**
-     * @return \Emis\News\Api\Entity\Country[]
+     * @return \Emis\Entity\Api\Dictionary\Country[]
      * @throws \Exception
      */
     public function getCountries()
@@ -23,7 +23,7 @@ class Dictionary extends Base
     }
 
     /**
-     * @return \Emis\News\Api\Entity\Language[]
+     * @return \Emis\Entity\Api\Dictionary\Language[]
      * @throws \Exception
      */
     public function getLanguages()
@@ -47,7 +47,7 @@ class Dictionary extends Base
     }
 
     /**
-     * @return \Emis\News\Api\Entity\Industry[]
+     * @return \Emis\Entity\Api\Dictionary\Industry[]
      * @throws \Exception
      */
     public function getIndustries()
@@ -59,7 +59,7 @@ class Dictionary extends Base
     }
 
     /**
-     * @return \Emis\News\Api\Entity\PublicationType[]
+     * @return \Emis\Entity\Api\Dictionary\PublicationType[]
      * @throws \Exception
      */
     public function getPublicationTypes()
@@ -71,7 +71,7 @@ class Dictionary extends Base
     }
 
     /**
-     * @return \Emis\News\Api\Entity\SourceType[]
+     * @return \Emis\Entity\Api\Dictionary\SourceType[]
      * @throws \Exception
      */
     public function getSourceTypes()
@@ -83,7 +83,7 @@ class Dictionary extends Base
     }
 
     /**
-     * @return \Emis\News\Api\Entity\Topic[]
+     * @return \Emis\Entity\Api\Dictionary\Topic[]
      * @throws \Exception
      */
     public function getTopics()

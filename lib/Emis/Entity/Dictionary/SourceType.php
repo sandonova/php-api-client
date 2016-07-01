@@ -1,12 +1,17 @@
 <?php
-namespace Emis\News\Api\Entity;
+namespace Emis\Entity\Api\Dictionary;
 
-class Industry
+class SourceType
 {
     /**
      * @var int
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $code;
 
     /**
      * @var string
@@ -23,11 +28,29 @@ class Industry
 
     /**
      * @param int $id
-     * @return Industry
+     * @return SourceType
      */
     public function setId($id)
     {
         $this->id = (int)$id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     * @return SourceType
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
         return $this;
     }
 
@@ -41,7 +64,7 @@ class Industry
 
     /**
      * @param string $name
-     * @return Industry
+     * @return SourceType
      */
     public function setName($name)
     {

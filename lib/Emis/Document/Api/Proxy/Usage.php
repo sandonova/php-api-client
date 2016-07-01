@@ -1,8 +1,8 @@
 <?php
-namespace Emis\News\Api\Proxy;
+namespace Emis\Document\Api\Proxy;
 
 use Emis\Entity\Serializer;
-use Emis\News\Api\Entity\UsageReport\Request;
+use Emis\Entity\Api\UsageReport\Request;
 
 class Usage extends Base
 {

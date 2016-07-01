@@ -48,11 +48,11 @@ if (!$token) {
 
 # Sending API Requests
 
-API requests are made through a set of proxy classes you could find under Emis\News\Api\Proxy namespace. 
+API requests are made through a set of proxy classes you could find under Emis\Document\Api\Proxy namespace. 
 A simple example getting document titles for country code 'HU':
 
 ```
-use Emis\News\Api\Proxy\Search;
+use Emis\Document\Api\Proxy\Search;
 
 ...
 
@@ -69,7 +69,7 @@ foreach ($result->getDocuments() as $document) {
 ## Using searchQuery method to easily pass the needed query parameters
  
 ```
-use Emis\News\Api\Entity\Search as SearchRequest;
+use Emis\Entity\Api\Document\Search as SearchRequest;
 
 ...
 
@@ -110,7 +110,7 @@ The example code prints the country code and country name, and can be easily mod
 any other Dictionary method.
 
 ```
-use Emis\News\Api\Proxy\Dictionary;
+use Emis\Document\Api\Proxy\Dictionary;
 
 ...
 
@@ -124,8 +124,8 @@ foreach ($dictionary->getCountries() as $country) {
 ## Usage tracking for single document
 
 ```
-use Emis\News\Api\Proxy\Search;
-use Emis\News\Api\Proxy\Usage;
+use Emis\Document\Api\Proxy\Search;
+use Emis\Document\Api\Proxy\Usage;
 
 ...
 
@@ -140,10 +140,10 @@ $usage->report($documents[0]->getId(), new \DateTime());
 ## Usage tracking for multiple documents
 
 ```
-use Emis\News\Api\Proxy\Search;
-use Emis\News\Api\Proxy\Usage;
-use Emis\News\Api\Entity\UsageReport\Document as ReportDocument;
-use Emis\News\Api\Entity\UsageReport\Request as UsageRequest;
+use Emis\Document\Api\Proxy\Search;
+use Emis\Document\Api\Proxy\Usage;
+use Emis\Entity\Api\UsageReport\Document as ReportDocument;
+use Emis\Entity\Api\UsageReport\Request as UsageRequest;
 
 ... 
 

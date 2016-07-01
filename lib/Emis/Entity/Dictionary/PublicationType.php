@@ -1,12 +1,17 @@
 <?php
-namespace Emis\News\Api\Entity;
+namespace Emis\Entity\Api\Dictionary;
 
-class Topic
+class PublicationType
 {
     /**
      * @var int
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $code;
 
     /**
      * @var string
@@ -23,11 +28,29 @@ class Topic
 
     /**
      * @param int $id
-     * @return Topic
+     * @return PublicationType
      */
     public function setId($id)
     {
         $this->id = (int)$id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     * @return PublicationType
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
         return $this;
     }
 
@@ -41,7 +64,7 @@ class Topic
 
     /**
      * @param string $name
-     * @return Topic
+     * @return PublicationType
      */
     public function setName($name)
     {

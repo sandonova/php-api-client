@@ -1,17 +1,12 @@
 <?php
-namespace Emis\News\Api\Entity;
+namespace Emis\Entity\Api\Dictionary;
 
-class Country
+class Industry
 {
     /**
      * @var int
      */
     private $id;
-
-    /**
-     * @var string
-     */
-    private $code;
 
     /**
      * @var string
@@ -28,29 +23,11 @@ class Country
 
     /**
      * @param int $id
-     * @return Country
+     * @return Industry
      */
     public function setId($id)
     {
         $this->id = (int)$id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * @param string $code
-     * @return Country
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
         return $this;
     }
 
@@ -64,7 +41,7 @@ class Country
 
     /**
      * @param string $name
-     * @return Country
+     * @return Industry
      */
     public function setName($name)
     {

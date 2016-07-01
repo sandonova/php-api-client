@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Api\Entity\UsageReport;
+namespace Emis\Entity\Api\UsageReport;
 
 class Document
 {

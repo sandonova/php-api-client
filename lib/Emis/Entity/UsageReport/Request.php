@@ -1,10 +1,10 @@
 <?php
-namespace Emis\News\Api\Entity\UsageReport;
+namespace Emis\Entity\Api\UsageReport;
 
 class Request
 {
     /**
-     * @var \Emis\News\Api\Entity\UsageReport\Document[]
+     * @var \Emis\Entity\Api\UsageReport\Document[]
      */
     private $documents;
 

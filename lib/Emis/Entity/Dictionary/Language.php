@@ -1,13 +1,8 @@
 <?php
-namespace Emis\News\Api\Entity;
+namespace Emis\Entity\Api\Dictionary;
 
-class PublicationType
+class Language
 {
-    /**
-     * @var int
-     */
-    private $id;
-
     /**
      * @var string
      */
@@ -19,24 +14,6 @@ class PublicationType
     private $name;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return (int)$this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return PublicationType
-     */
-    public function setId($id)
-    {
-        $this->id = (int)$id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getCode()
@@ -46,7 +23,7 @@ class PublicationType
 
     /**
      * @param string $code
-     * @return PublicationType
+     * @return Language
      */
     public function setCode($code)
     {
@@ -64,7 +41,7 @@ class PublicationType
 
     /**
      * @param string $name
-     * @return PublicationType
+     * @return Language
      */
     public function setName($name)
     {

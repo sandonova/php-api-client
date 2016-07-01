@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Api\Proxy;
+namespace Emis\Document\Api\Proxy;
 
 use Emis\Http\Client;
 

@@ -1,5 +1,5 @@
 <?php
-namespace Emis\News\Api\Entity;
+namespace Emis\Entity\Api\Dictionary;
 
 class Company
 {

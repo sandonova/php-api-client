@@ -1,9 +1,8 @@
 <?php
-namespace Emis\News\Api\Proxy;
+namespace Emis\Document\Api\Proxy;
 
-use Emis\Entity\Serializer;
-use Emis\News\Api\Entity\Result;
-use Emis\News\Api\Entity\Search as SearchEntity;
+use Emis\Entity\Api\Document\Result;
+use Emis\Entity\Api\Document\Search as SearchEntity;
 
 class Search extends Base
 {
