@@ -15,6 +15,13 @@ class Client
     private $token = null;
 
     /**
+     * @var Serializer
+     */
+    private $serializer = null;
+
+    private $apiUrl = self::API_URL;
+
+    /**
      * @var resource
      */
     private $handler;
@@ -35,6 +42,44 @@ class Client
     {
         $this->token = $token;
         return $this;
+    }
+
+    /**
+     * @return Serializer
+     */
+    public function getSerializer()
+    {
+        if (!$this->serializer) {
+            $this->setSerializer(new Serializer());
+        }
+
+        return $this->serializer;
+    }
+
+    /**
+     * @param Serializer $serializer
+     * @return Client
+     */
+    public function setSerializer($serializer)
+    {
+        $this->serializer = $serializer;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiUrl()
+    {
+        return $this->apiUrl;
+    }
+
+    /**
+     * @param string $apiUrl
+     */
+    public function setApiUrl($apiUrl)
+    {
+        $this->apiUrl = $apiUrl;
     }
 
     public function __construct()
@@ -73,7 +118,7 @@ class Client
             }
         }
 
-        $url = sprintf(self::API_URL, $api, $class, $method, http_build_query($params));
+        $url = sprintf($this->getApiUrl(), $api, $class, $method, http_build_query($params));
         curl_setopt($this->handler, CURLOPT_URL, $url);
 
         $response = curl_exec($this->handler);
@@ -88,8 +133,7 @@ class Client
         }
 
         if (isset($result->data->_type) || (is_array($result->data) && count($result->data) && $result->data[0]->_type)) {
-            $serializer = new Serializer();
-            $object = $serializer->unserialize($response);
+            $object = $this->getSerializer()->unserialize($response);
             return $object;
         }
 

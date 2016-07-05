@@ -93,4 +93,28 @@ class Dictionary extends Base
 
         return $result;
     }
+
+    /**
+     * @return \Emis\Entity\Api\Dictionary\PublicationType[]
+     * @throws \Exception
+     */
+    public function getUserPublicationTypes()
+    {
+        /* @var PublicationType[] $result */
+        $result = $this->getClient()->request('Dictionary', 'getUserPublicationTypes');
+
+        return $result;
+    }
+
+    /**
+     * @return \Emis\Entity\Api\Dictionary\Country[]
+     * @throws \Exception
+     */
+    public function getUserCountries()
+    {
+        /* @var Country[] $result */
+        $result = $this->getClient()->request('Dictionary', 'getUserCountries');
+
+        return $result;
+    }
 }
