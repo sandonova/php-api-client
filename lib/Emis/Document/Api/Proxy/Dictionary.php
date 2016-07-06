@@ -95,13 +95,16 @@ class Dictionary extends Base
     }
 
     /**
+     * @param null $module
      * @return \Emis\Entity\Api\Dictionary\PublicationType[]
      * @throws \Exception
      */
-    public function getUserPublicationTypes()
+    public function getUserPublicationTypes($module = null)
     {
+        $params = $this->getClient()->paramsAsArray($this, 'query', func_get_args());
+
         /* @var PublicationType[] $result */
-        $result = $this->getClient()->request('Dictionary', 'getUserPublicationTypes');
+        $result = $this->getClient()->request('Dictionary', 'getUserPublicationTypes', $params);
 
         return $result;
     }
