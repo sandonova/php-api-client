@@ -101,7 +101,7 @@ class Dictionary extends Base
      */
     public function getUserPublicationTypes($module = null)
     {
-        $params = $this->getClient()->paramsAsArray($this, 'query', func_get_args());
+        $params = $this->getClient()->paramsAsArray($this, 'getUserPublicationTypes', func_get_args());
 
         /* @var PublicationType[] $result */
         $result = $this->getClient()->request('Dictionary', 'getUserPublicationTypes', $params);
