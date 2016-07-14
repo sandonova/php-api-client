@@ -1,3 +1,9 @@
+# EMIS API PHP SDK
+
+EMIS has a rich news and reports content from thousands of renowned local and global sources.
+EMIS Documents API allows you to access the news and reports we have through your own integrated database. We provide you the data in XML format which you can either download in mass quantities (feed) or by on demand searches (API).
+EMIS API PHP SDK provides an easy way to quickly access the needed information in an object oriented way with minimum knowledge about the API.
+
 # composer.json
 
 Create a new project and add the EMIS API composer dependency:
