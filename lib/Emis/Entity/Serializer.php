@@ -2,6 +2,7 @@
 namespace Emis\Entity;
 
 use Emis\Annotation\SimpleAnnotationReader;
+use Emis\Api\IApi;
 use Emis\Exception\InternalException;
 use Emis\Exception\Exception;
 
