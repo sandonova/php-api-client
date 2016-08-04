@@ -2,7 +2,6 @@
 namespace Emis\Entity;
 
 use Emis\Annotation\SimpleAnnotationReader;
-use Emis\Api\IApi;
 use Emis\Exception\InternalException;
 use Emis\Exception\Exception;
 
@@ -103,7 +102,7 @@ class Serializer
                 $data = $this->asXml($object);
                 break;
             default:
-                throw new \Exception('Unknown output format.');
+                throw new InternalException('Unknown output format.', InternalException::OUTPUT_FORMAT_UNKNOWN);
         }
 
         return $data;
@@ -118,7 +117,7 @@ class Serializer
      * @param $data
      * @param null $constructorParameter
      * @return array|\DateTime
-     * @throws \Exception
+     * @throws InternalException
      */
     public function unserialize($data, $constructorParameter = null)
     {
@@ -140,7 +139,7 @@ class Serializer
                 $stdClass = $xmlSerializer->getUnserializedData();
                 break;
             default:
-                throw new \Exception('Unknown output format.');
+                throw new InternalException('Unknown output format.', InternalException::OUTPUT_FORMAT_UNKNOWN);
         }
 
         $stdClass = $this->fixUnserializedArrays($stdClass);
@@ -190,7 +189,10 @@ class Serializer
         }
 
         if (is_object($stdClass) && property_exists($stdClass, '_type')) {
-            $object = new $stdClass->_type($constructorParameter);
+            $typeChunks = explode('<', $stdClass->_type);
+            $type = $typeChunks[0];
+
+            $object = new $type($constructorParameter);
             $reflection = new \ReflectionClass(get_class($object));
 
             foreach ($stdClass as $key => $value) {
@@ -225,9 +227,10 @@ class Serializer
      *
      * @param mixed $object
      * @param IApi $api
+     * @param array $typeProperties
      * @return \stdClass
      */
-    public function asStdClass($object, IApi $api = null)
+    public function asStdClass($object, IApi $api = null, $typeProperties = null)
     {
         if ($object instanceof \DateTime) {
             $date = new \stdClass();
@@ -239,7 +242,7 @@ class Serializer
 
         if (is_array($object)) {
             foreach ($object as $key => $value) {
-                $object[$key] = $this->asStdClass($value, $api);
+                $object[$key] = $this->asStdClass($value, $api, $typeProperties);
             }
 
             return $object;
@@ -254,12 +257,17 @@ class Serializer
         $stdObject = new \stdClass();
         $stdObject->_type = $class->getName();
 
+        if ($typeProperties) {
+            $stdObject->_type .= sprintf('<%s>', $typeProperties);
+        }
+
         $properties = $class->getProperties(\ReflectionMethod::IS_PUBLIC);
 
         if (count($properties)) {
             foreach ($properties as $property) {
                 if (!$property->isStatic() && $this->isSerializable($class, $property->getName())) {
-                    $stdObject->{$property->getName()} = $this->asStdClass($object->{$property->getName()}, $api);
+                    $returnTypes = $this->getReturnTypes($property);
+                    $stdObject->{$property->getName()} = $this->asStdClass($object->{$property->getName()}, $api, $returnTypes);
                 }
             }
         }
@@ -283,6 +291,32 @@ class Serializer
         }
 
         return $stdObject;
+    }
+
+    public function getReturnTypes(\ReflectionProperty $property)
+    {
+        $returnTypesAnnotation = $this->getAnnotationReader()->getPropertyAnnotation($property, 'return-types');
+
+        if (!$returnTypesAnnotation) {
+            $returnTypes = null;
+        } else {
+            $returnTypes = str_replace(' ', '', $returnTypesAnnotation);
+        }
+
+        return $returnTypes;
+    }
+
+    public function getMethodReturnTypes(\ReflectionMethod $method)
+    {
+        $returnTypesAnnotation = $this->getAnnotationReader()->getMethodAnnotation($method, 'return-types');
+
+        if (!$returnTypesAnnotation) {
+            $returnTypes = null;
+        } else {
+            $returnTypes = str_replace(' ', '', $returnTypesAnnotation);
+        }
+
+        return $returnTypes;
     }
 
     private function isSerializable(\ReflectionClass $class, $propertyName)
@@ -352,7 +386,28 @@ class Serializer
             return null;
         }
 
-        $schema = sprintf($this->getSchemaUrl(), $class);
+        $types = '';
+        preg_match('/(.*)<(.*)>/', $class, $matches);
+
+        if (count($matches) == 3) {
+            if (substr($class, -2) == '[]') {
+                $class = $matches[1] . '[]';
+            } else {
+                $class = $matches[1];
+            }
+
+            foreach (explode(',', $matches[2]) as $type) {
+                list($key, $value) = explode('=', trim($type));
+
+                if (substr(trim($value), 0, 1) == '\\') {
+                    $value = substr(trim($value), 1);
+                }
+
+                $types .= sprintf('&types[%s]=%s', trim($key), $value);
+            }
+        }
+
+        $schema = sprintf($this->getSchemaUrl(), $class . $types);
         $schema = str_replace('\\', '_', $schema);
 
         return $schema;
@@ -364,13 +419,13 @@ class Serializer
 
         switch ($this->getFormat()) {
             case Serializer::FORMAT_JSON:
-                header('Content-Type: application/vnd.api+json');
+                header('Content-Type: application/json');
                 break;
             case Serializer::FORMAT_XML:
                 header('Content-Type: application/xml');
                 break;
             default:
-                throw new \Exception('Unknown output format.');
+                throw new InternalException('Unknown output format.', InternalException::OUTPUT_FORMAT_UNKNOWN);
         }
 
         echo $data;
