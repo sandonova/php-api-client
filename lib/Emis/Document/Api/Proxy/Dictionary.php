@@ -59,6 +59,20 @@ class Dictionary extends Base
     }
 
     /**
+     * @param $country string
+     * @return \Emis\Entity\Api\Dictionary\Industry[]
+     */
+    public function getCountryIndustries($country)
+    {
+        $params = $this->getClient()->paramsAsArray($this, 'getCountryIndustries', func_get_args());
+
+        /* @var Industry[] $result */
+        $result = $this->getClient()->request('Dictionary', 'getCountryIndustries', $params);
+
+        return $result;
+    }
+
+    /**
      * @return \Emis\Entity\Api\Dictionary\PublicationType[]
      * @throws \Exception
      */
