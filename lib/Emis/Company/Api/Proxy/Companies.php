@@ -37,7 +37,7 @@ class Companies extends Base {
 	 * @param Date $lastUpdate        	
 	 * @param int $offset        	
 	 */
-	public function getCompanyList($country, $lastUpdate = null, $offset = 0, $limit) {
+	public function getCompanyList($country, $lastUpdate = null, $offset = 0, $limit = null) {
 		$params = $this->getClient ()->paramsAsArray ( $this, 'getCompanyList', func_get_args () );
 		
 		$result = $this->getClient ()->request ( 'Companies', 'getCompanyList', $params );
@@ -51,7 +51,7 @@ class Companies extends Base {
 	 * @param Date $lastUpdate        	
 	 * @param int $offset        	
 	 */
-	public function getCompanyIdMap($country, $lastUpdate = null, $offset = 0, $limit) {
+	public function getCompanyIdMap($country, $lastUpdate = null, $offset = 0, $limit= null) {
 		$params = $this->getClient ()->paramsAsArray ( $this, 'getCompanyIdMap', func_get_args () );
 		
 		$result = $this->getClient ()->request ( 'Companies', 'getCompanyIdMap', $params );

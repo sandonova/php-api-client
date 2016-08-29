@@ -112,7 +112,7 @@ class Dictionary extends Base {
 	/**
 	 * @Authorization(type=AuthorizationType::AUTHENTICATED)
 	 */
-	public function getCityList( $offset = 0, $limit ){
+	public function getCityList(  $limit, $offset = 0 ){
 		$params = $this->getClient ()->paramsAsArray ( $this, 'getCityList', func_get_args () );
 		return $this->getClient ()->request ( 'Dictionary', 'getCityList', $params );
 	}
