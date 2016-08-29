@@ -28,6 +28,7 @@ As a minimum your script should login/logout to EMIS API:
 use Emis\Http\Client;
 
 $client = new Client();
+$client->setApi(Client::DOCUMENTS_API);
 $client->login('username', 'password');
 
 $client->logout();
@@ -43,6 +44,7 @@ Below you can find an example that stores the current session in the filesystem:
 ```
 $token = file_get_contents('token');
 $client = new Client();
+$client->setApi(Client::DOCUMENTS_API);
 
 if (!$token) {
     $client->login('username', 'password');
