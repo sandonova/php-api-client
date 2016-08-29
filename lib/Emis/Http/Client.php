@@ -6,9 +6,10 @@ use Emis\Entity\Serializer;
 class Client
 {
     const CLIENT_TIMEOUT = 120;
-    const API_URL = 'https://api.emis.com/%s/%s/%s/?%s';
-    const DEFAULT_API = 'news';
-
+  //  const API_URL = 'https://api.emis.com/%s/%s/%s/?%s';
+	const API_URL = 'https://sgorecki-emis-dev.emis.com/php/api/%s/?class=%s&method=%s&%s';
+    const DOCUMENTS_API = 'news';
+	const COMPANY_API = 'company';
     /**
      * @var string
      */
@@ -25,6 +26,12 @@ class Client
      * @var resource
      */
     private $handler;
+    
+    /**
+     *  @var string
+     */
+    private $api;
+    
 
     /**
      * @return string
@@ -106,8 +113,12 @@ class Client
      * @return array
      * @throws \Exception
      */
-    public function request($class, $method, $params = array(), $api = self::DEFAULT_API)
+    public function request($class, $method, $params = array())
     {
+    	if(!$this->getApi()){
+    		throw new \Exception("There is no api specified. Pleace set api with Client->setApi(). ");
+    	}
+    	
         if ($this->getToken()) {
             $params['sessionId'] = $this->getToken();
         }
@@ -118,7 +129,7 @@ class Client
             }
         }
 
-        $url = sprintf($this->getApiUrl(), $api, $class, $method, http_build_query($params));
+        $url = sprintf($this->getApiUrl(), $this->getApi(), $class, $method, http_build_query($params));
         curl_setopt($this->handler, CURLOPT_URL, $url);
 
         $response = curl_exec($this->handler);
@@ -153,7 +164,8 @@ class Client
             array(
                 'username' => $username,
                 'password' => $password
-            )
+            ),
+        	$this->api
         );
 
         $this->setToken($result->sessionId);
@@ -200,4 +212,27 @@ class Client
 
         return $params;
     }
+    
+    /**
+     * 
+     * @param string $api
+     * @throws \Exception
+     */
+    public function setApi($api){
+    	if( 0 == strcmp($api, self::DOCUMENTS_API ) || 0 == strcmp($api, self::COMPANY_API )  ){
+    		$this->api = $api;
+    	}else{
+    		throw new \Exception("Api should be one of: '". join('\', \'', array( self::DOCUMENTS_API , self::COMPANY_API ) )."'" );
+    	}
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getApi(){
+    	return $this->api;
+    }
+    
+    
 }
