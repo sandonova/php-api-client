@@ -1,5 +1,5 @@
 <?php
-namespace Emis\Company\Api\Proxy\Base;
+namespace Emis\Company\Api\Proxy;
 
 class Dictionary extends Base {
 	
