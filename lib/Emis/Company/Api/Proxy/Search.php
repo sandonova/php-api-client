@@ -4,7 +4,8 @@ namespace Emis\Company\Api\Proxy;
 
 
 class Search extends Base {
-	
+	const SEARCH_DEFAULT_SERVICE       = 'API';
+    const SEARCH_SERVICE_PROSPECT      = 'PROSPECT';
 	/**
 	 * @Authorization(type=AuthorizationType::AUTHENTICATED)
 	 * 
@@ -13,7 +14,7 @@ class Search extends Base {
 	 * @param int $offset        	
 	 * @param int $Limit        	
 	 */
-	public function queryCompany($filter, $extended = false, $offset = 0, $limit = null) {
+	public function queryCompany($filter, $extended = false, $offset = 0, $limit = null, $service = Self::SEARCH_DEFAULT_SERVICE) {
 		$params = $this->getClient ()->paramsAsArray ( $this, 'queryCompany', func_get_args () );
 		return $this->getClient ()->request ( 'Search', 'queryCompany', $params );
 	}
