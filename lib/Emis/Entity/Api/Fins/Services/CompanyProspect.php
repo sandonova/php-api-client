@@ -1,13 +1,13 @@
 <?php
 
 namespace Emis\Entity\Api\Fins\Services;
-
+use Emis\Entity\Api\Fins\Company\Company as Company;
 /**
  * Description of CompanyProspect
  *
  * @author dsales
  */
-class CompanyProspect extends Emis\Entity\Api\Fins\Company\Company
+class CompanyProspect extends Company
 {
     /**
      * @var string
