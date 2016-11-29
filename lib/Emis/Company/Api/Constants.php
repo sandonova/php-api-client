@@ -23,7 +23,7 @@ class Constants{
 	const SEARCH_ORDER_LANG_LOCAL = "local";
 	
 	const SEARCH_ORDER_CURRENCY_USD = "usd";
-	const SEARCH_ORDER_CURRENCY_EU = "eu";
+	const SEARCH_ORDER_CURRENCY_EU = "eur";
 	const SEARCH_ORDER_CURRENCY_LOCAL = "local";
 	
 }
