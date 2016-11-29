@@ -25,4 +25,5 @@ class Constants{
 	const SEARCH_ORDER_CURRENCY_USD = "usd";
 	const SEARCH_ORDER_CURRENCY_EU = "eu";
 	const SEARCH_ORDER_CURRENCY_LOCAL = "local";
+	
 }

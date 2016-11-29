@@ -8,6 +8,10 @@
     {
       "name": "Ivan Zhekov",
       "email": "izhekov@emis.com"
+    },
+    {
+      "name": "Teodor Gatev ",
+      "email": "tgatev@emis.com"
     }
   ],
   "autoload": {
