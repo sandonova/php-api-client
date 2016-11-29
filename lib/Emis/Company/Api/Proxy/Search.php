@@ -19,7 +19,7 @@ class Search extends Base {
 	 * @param string[] $order
 	 * @param string $orderLang
 	 */
-	public function queryCompany($filter, $extended = false, $offset = 0, $limit = null, $service = Constants::SEARCH_DEFAULT_SERVICE , $currency = Constants::SEARCH_DEFAULT_CURRENCY, $order = null, $orderLang = Constants::SEARCH_DEFAULT_LANG ) {
+	public function queryCompany($filter, $extended = false, $offset = 0, $limit = null, $service = null, $currency = null, $order = null, $orderLang = null ) {
 		$params = $this->getClient ()->paramsAsArray ( $this, 'queryCompany', func_get_args () );
 		return $this->getClient ()->request ( 'Search', 'queryCompany', $params );
 	}
