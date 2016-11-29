@@ -2,19 +2,24 @@
 
 namespace Emis\Company\Api\Proxy;
 
+use Emis\Company\Api\Constants;
 
 class Search extends Base {
-	const SEARCH_DEFAULT_SERVICE       = 'API';
-    const SEARCH_SERVICE_PROSPECT      = 'PROSPECT';
+
+
 	/**
 	 * @Authorization(type=AuthorizationType::AUTHENTICATED)
 	 * 
 	 * @param string $filter        	
 	 * @param boolean $extended        	
 	 * @param int $offset        	
-	 * @param int $Limit        	
+	 * @param int $Limit    
+	 * @param string $service
+	 * @param string $currency
+	 * @param string[] $order
+	 * @param string $orderLang
 	 */
-	public function queryCompany($filter, $extended = false, $offset = 0, $limit = null, $service = Self::SEARCH_DEFAULT_SERVICE) {
+	public function queryCompany($filter, $extended = false, $offset = 0, $limit = null, $service = Constants::SEARCH_DEFAULT_SERVICE , $currency = Constants::SEARCH_DEFAULT_CURRENCY, $order = null, $orderLang = Constants::SEARCH_DEFAULT_LANG ) {
 		$params = $this->getClient ()->paramsAsArray ( $this, 'queryCompany', func_get_args () );
 		return $this->getClient ()->request ( 'Search', 'queryCompany', $params );
 	}
