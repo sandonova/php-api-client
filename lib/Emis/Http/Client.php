@@ -6,8 +6,7 @@ use Emis\Entity\Serializer;
 class Client
 {
     const CLIENT_TIMEOUT = 120;
-    //const API_URL = 'https://api.emis.com/%s/%s/%s/?%s';
-    const API_URL = 'https://sgorecki-emis-dev.emis.com/php/api/%s/?class=%s&method=%s&%s';
+    const API_URL = 'https://api.emis.com/%s/%s/%s/?%s';
 	
 	const DOCUMENTS_API = 'news';
 	const COMPANY_API = 'company';
