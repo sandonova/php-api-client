@@ -10,6 +10,12 @@ class Client
 	
 	const DOCUMENTS_API = 'news';
 	const COMPANY_API = 'company';
+
+    const PARAMETER_SERVICE = '_service';
+    const PARAMETER_PUBLICATION_CODE = '_publicationCode';
+    const PARAMETER_LOG_USERNAME = '_logUsername';
+    const PARAMETER_LOG_CUSTOMER_ID = '_logCustomerId';
+
     /**
      * @var string
      */
@@ -31,7 +37,37 @@ class Client
      *  @var string
      */
     private $api;
-    
+
+    /**
+     * @var array
+     */
+    private $extraParams = array();
+
+    /**
+     * @param string $key
+     * @param string $value
+     */
+    public function addExtraParam($key, $value)
+    {
+        $this->extraParams[$key] = $value;
+    }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    public function getExtraParam($key)
+    {
+        return $this->extraParams[$key];
+    }
+
+    /**
+     * @return array
+     */
+    public function getExtraParams()
+    {
+        return $this->extraParams;
+    }
 
     /**
      * @return string
@@ -109,14 +145,16 @@ class Client
      * @param string $class
      * @param string $method
      * @param array $params
-     * @param string $api
      * @return array
      * @throws \Exception
+     * @internal param string $api
      */
     public function request($class, $method, $params = array())
     {
+        $params = array_merge($params, $this->getExtraParams());
+
     	if(!$this->getApi()){
-    		throw new \Exception("There is no api specified. Pleace set api with Client->setApi(). ");
+    		throw new \Exception("There is no API specified. Please set API base URL with Client->setApi().");
     	}
     	
         if ($this->getToken()) {
@@ -233,6 +271,4 @@ class Client
     public function getApi(){
     	return $this->api;
     }
-    
-    
 }
