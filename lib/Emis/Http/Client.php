@@ -15,6 +15,7 @@ class Client
     const PARAMETER_PUBLICATION_CODE = '_publicationCode';
     const PARAMETER_LOG_USERNAME = '_logUsername';
     const PARAMETER_LOG_CUSTOMER_ID = '_logCustomerId';
+    const PARAMETER_LOG_EMAIL = '_logEmail';
 
     /**
      * @var string
@@ -46,10 +47,13 @@ class Client
     /**
      * @param string $key
      * @param string $value
+     * @return $this
      */
     public function addExtraParam($key, $value)
     {
         $this->extraParams[$key] = $value;
+
+        return $this;
     }
 
     /**
@@ -67,6 +71,27 @@ class Client
     public function getExtraParams()
     {
         return $this->extraParams;
+    }
+
+    /**
+     * @return Client
+     */
+    public function clearExtraParams()
+    {
+        $this->extraParams = array();
+
+        return $this;
+    }
+
+    /**
+     * @param $key
+     * @return Client
+     */
+    public function removeExtraParam($key)
+    {
+        unset($this->extraParams[$key]);
+
+        return $this;
     }
 
     /**
