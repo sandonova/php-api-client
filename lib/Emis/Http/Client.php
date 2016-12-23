@@ -16,6 +16,7 @@ class Client
     const PARAMETER_LOG_USERNAME = '_logUsername';
     const PARAMETER_LOG_CUSTOMER_ID = '_logCustomerId';
     const PARAMETER_LOG_EMAIL = '_logEmail';
+    const PARAMETER_LOG_IP = '_logIp';
 
     /**
      * @var string
@@ -78,7 +79,12 @@ class Client
      */
     public function clearExtraParams()
     {
-        $this->extraParams = array();
+        $newParams = array();
+        if ($this->extraParams[self::PARAMETER_LOG_IP]) {
+            $newParams[self::PARAMETER_LOG_IP] = $this->extraParams[self::PARAMETER_LOG_IP];
+        }
+
+        $this->extraParams = $newParams;
 
         return $this;
     }
