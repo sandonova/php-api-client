@@ -79,7 +79,12 @@ class Client
      */
     public function clearExtraParams()
     {
-        $this->extraParams = array();
+        $newParams = array();
+        if ($this->extraParams[self::PARAMETER_LOG_IP]) {
+            $newParams[self::PARAMETER_LOG_IP] = $this->extraParams[self::PARAMETER_LOG_IP];
+        }
+
+        $this->extraParams = $newParams;
 
         return $this;
     }
