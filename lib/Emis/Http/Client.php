@@ -16,6 +16,7 @@ class Client
     const PARAMETER_LOG_USERNAME = '_logUsername';
     const PARAMETER_LOG_CUSTOMER_ID = '_logCustomerId';
     const PARAMETER_LOG_EMAIL = '_logEmail';
+    const PARAMETER_LOG_IP = '_logIp';
 
     /**
      * @var string
