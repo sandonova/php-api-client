@@ -5,6 +5,8 @@ class Statements extends Base {
   /**
    * @Authorization(type=AuthorizationType::AUTHENTICATED)
    * @param int $stmtid
+   * @param string $currency
+   * @param bool $extended
    */
   public function getStatementById($stmtid, $currency='usd', $extended=false)
   {
@@ -12,6 +14,17 @@ class Statements extends Base {
 		return $this->getClient ()->request ( 'Statements', 'getStatementById', $params );
   }
 
+  /**
+   * @Authorization(type=AuthorizationType::AUTHENTICATED)
+   * @param int $stmtid
+   * @param string $currency
+   * @param bool $extended
+   */
+  public function getStatementsByIds($stmtid, $currency='usd', $extended=false)
+  {
+  	$params = $this->getClient ()->paramsAsArray ( $this, 'getStatementsByIds', func_get_args () );
+  	return $this->getClient ()->request ( 'Statements', 'getStatementsByIds', $params );
+  }
   /**
    * @Authorization(type=AuthorizationType::AUTHENTICATED)
    * @param int $isic
