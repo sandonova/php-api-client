@@ -16,7 +16,7 @@ class Statements extends Base {
 
   /**
    * @Authorization(type=AuthorizationType::AUTHENTICATED)
-   * @param int $stmtid
+   * @param array $stmtid
    * @param string $currency
    * @param bool $extended
    */
