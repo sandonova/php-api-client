@@ -26,7 +26,6 @@ class StatementAccountExtended extends StatementAccount
 
     /**
      * @var string
-     * @serializable false
      */
     private $accountType = null;
 
