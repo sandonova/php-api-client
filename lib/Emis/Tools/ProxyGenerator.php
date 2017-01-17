@@ -331,7 +331,7 @@ EOF;
         $xml->loadXML($schema);
 
         $xsl = new \DOMDocument();
-        $xsl->load(dirname(__FILE__) . '/../xsl/entity.xsl');
+        $xsl->load(dirname(__FILE__) . '/../../../xsl/entity.xsl');
 
         $processor = new \XSLTProcessor();
         $processor->importStyleSheet($xsl);
