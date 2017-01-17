@@ -10,6 +10,7 @@ class Client
 	
 	const DOCUMENTS_API = 'news';
 	const COMPANY_API = 'company';
+	const DEALWATCH_API = 'dw';
 
     const PARAMETER_SERVICE = '_service';
     const PARAMETER_PUBLICATION_CODE = '_publicationCode';
@@ -176,13 +177,18 @@ class Client
      * @param string $class
      * @param string $method
      * @param array $params
+     * @param string $package
      * @return array
      * @throws \Exception
      * @internal param string $api
      */
-    public function request($class, $method, $params = array())
+    public function request($class, $method, $params = array(), $package = null, $asXml = false)
     {
         $params = array_merge($params, $this->getExtraParams());
+
+        if ($package) {
+            $params['package'] = $package;
+        }
 
     	if(!$this->getApi()){
     		throw new \Exception("There is no API specified. Please set API base URL with Client->setApi().");
@@ -198,14 +204,16 @@ class Client
             }
         }
 
-        $url = sprintf($this->getApiUrl(), $this->getApi(), $class, $method, http_build_query($params));
+        $api = $this->getApi() . ($asXml ? "/xml" : '');
+        $url = sprintf($this->getApiUrl(), $api, $class, $method, http_build_query($params));
+    	echo $url . "\n";
         curl_setopt($this->handler, CURLOPT_URL, $url);
 
         $response = curl_exec($this->handler);
         $result = json_decode($response);
 
         if (!$result) {
-            throw new \Exception('Unexpected response.');
+            return $response;
         }
 
         if (isset($result->errors)) {
@@ -283,23 +291,23 @@ class Client
     }
     
     /**
-     * 
      * @param string $api
      * @throws \Exception
      */
-    public function setApi($api){
-    	if( 0 == strcmp($api, self::DOCUMENTS_API ) || 0 == strcmp($api, self::COMPANY_API )  ){
+    public function setApi($api)
+    {
+    	if (0 == strcmp($api, self::DOCUMENTS_API ) || 0 == strcmp($api, self::COMPANY_API) || 0 == strcmp($api, self::DEALWATCH_API)) {
     		$this->api = $api;
-    	}else{
-    		throw new \Exception("Api should be one of: '". join('\', \'', array( self::DOCUMENTS_API , self::COMPANY_API ) )."'" );
+    	} else {
+    		throw new \Exception("Api should be one of: '" . join('\', \'', array(self::DOCUMENTS_API, self::COMPANY_API, self::DEALWATCH_API)) . "'");
     	}
     }
     
     /**
-     * 
      * @return string
      */
-    public function getApi(){
+    public function getApi()
+    {
     	return $this->api;
     }
 }
