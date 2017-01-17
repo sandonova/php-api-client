@@ -232,7 +232,7 @@ EOF;
                 $params[] = sprintf('%s$%s%s',
                     $this->typeAsString($parameter->getType()),
                     $parameter->getName(),
-                    $parameter->getIsMandatory() ? '' : ' = ' . $this->defaultValueAsString($parameter->getDefaultValue())
+                    $parameter->getIsMandatory() ? '' : ' = ' . $this->defaultValueAsString($parameter)
                 );
 
                 $annotations[] = sprintf("\t* @var %s $%s %s",
@@ -276,8 +276,14 @@ EOF;
         return $type . ' ';
     }
 
-    private function defaultValueAsString($value)
+    /**
+     * @param ApiParameter $parameter
+     * @return mixed|string
+     */
+    private function defaultValueAsString(ApiParameter $parameter)
     {
+        $value = $parameter->getDefaultValue();
+
         if (is_array($value)) {
             return "array()";
         }
@@ -294,8 +300,8 @@ EOF;
             }
         }
 
-        if (!$value && strlen($value) < 1) {
-            $value = "''";
+        if ($parameter->getType() == 'string') {
+            $value = sprintf("'%s'", $value);
         }
 
         return $value;
@@ -404,7 +410,6 @@ EOF;
                     $value = substr(trim($value), 1);
                 }
 
-                // $types .= sprintf('&types[%s]=%s', trim($key), $value);
                 $types[$key] = $value;
             }
         }

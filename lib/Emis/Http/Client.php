@@ -206,7 +206,6 @@ class Client
 
         $api = $this->getApi() . ($asXml ? "/xml" : '');
         $url = sprintf($this->getApiUrl(), $api, $class, $method, http_build_query($params));
-    	echo $url . "\n";
         curl_setopt($this->handler, CURLOPT_URL, $url);
 
         $response = curl_exec($this->handler);
