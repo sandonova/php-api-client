@@ -103,7 +103,7 @@ EOF;
 
     public function run()
     {
-        printf("Syntax: php proxy-gen.php [--api=<api name>] [--todir=<target directory>] [--username=<username>] [--password=<password>]\n\n");
+        printf("Syntax: php esdk.php [--api=<api name>] [--todir=<target directory>] [--username=<username>] [--password=<password>]\n\n");
 
         $this->inputApi();
         $this->inputUsername();
@@ -331,7 +331,7 @@ EOF;
         $xml->loadXML($schema);
 
         $xsl = new \DOMDocument();
-        $xsl->load('xsl/entity.xsl');
+        $xsl->load(dirname(__FILE__) . '/../xsl/entity.xsl');
 
         $processor = new \XSLTProcessor();
         $processor->importStyleSheet($xsl);

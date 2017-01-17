@@ -1,5 +1,6 @@
 {
   "name": "emis/php-api-client",
+  "bin": [ "bin/esdk.php" ],
   "description": "EMIS PHP API Client Library",
   "type": "library",
   "license": "proprietary",
